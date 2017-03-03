@@ -1,0 +1,21 @@
+{
+  "name": "EMUL",
+  "version": "1.0.0",
+  "description": "Front-End Emulator Launcher",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/Danny908/EMUL",
+  "keywords": [
+    "Electron",
+    "Front-End",
+    "Emulator",
+    "WIP"
+  ],
+  "author": "Danny Torres",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.4.1"
+  }
+}
