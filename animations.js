@@ -7,7 +7,3 @@ function welcomeOut() {
         element.parentNode.removeChild(element);
     },2000);
 }
-
-setTimeout(function() {
-    welcomeOut();
-},2000)
