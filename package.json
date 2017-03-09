@@ -4,7 +4,10 @@
   "description": "Front-End Emulator Launcher",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-installer-dmg EMUL-darwin-x64/EMUL.app/Contents/Resources/app EMUL --out=./dist",
+    "build": "electron-packager . --platform=darwin --arch=x64 --ignore=node_modules/electron-* --overwrite",
+    "build-win": "electron-packager . --platform=win32 --arch=ia32 --version=0.27.2"
   },
   "repository": "https://github.com/Danny908/EMUL",
   "keywords": [
