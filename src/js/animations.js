@@ -14,7 +14,7 @@ collapseBtn.addEventListener('click', function() {
         eList.classList.remove('emul-list-show');
     }
     setTimeout(function() {
-        tag.setAttribute('style', 'display: none');
+        tag.setAttribute('style', 'width: 0; padding: 0; visibility: hidden;');
     }, 280);
 });
 
