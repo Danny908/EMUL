@@ -33,6 +33,22 @@ showBtn.addEventListener('click', function() {
     }, 160);
 });
 
+//Show dialog window
+let showModal = document.getElementById('add-emul');
+let addEmulModal = document.getElementById('add-emulator-modal');
+let frameModal = document.getElementById('m-frame');
+let hideModal = document.getElementById('close-modal');
+
+showModal.addEventListener('click', function() {
+    addEmulModal.removeAttribute('hidden');
+    frameModal.classList.add('modal-in');
+})
+
+hideModal.addEventListener('click', function() {
+    frameModal.classList.remove('modal-in');
+    addEmulModal.setAttribute('hidden', true);
+})
+
 // Welcome Screen
 function welcomeOut() {
     let element = document.getElementById('welcome');

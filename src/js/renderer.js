@@ -3,15 +3,16 @@
 // All of the Node.js APIs are available in this process.
 const ipc = require('electron').ipcRenderer
 const fs = require('fs');
+const http = require ('http');
 
 // Create folder & json to store emulators path
-/*if (!fs.existsSync('./emulPaths')) {
-    fs.mkdirSync('./emulPaths');
-}
+// if (!fs.existsSync('./emulPaths')) {
+//     fs.mkdirSync('./emulPaths');
+// }
 
-if (!fs.existsSync('./emulPaths/paths.json')) {
-    fs.openSync('./emulPaths/paths.json', 'w');
-}*/
+// if (!fs.existsSync('./emulPaths/paths.json')) {
+//     fs.openSync('./emulPaths/paths.json', 'w');
+// }
 
 //console.log(JSON.parse(fs.readFileSync('./emulPaths/paths.json',{encoding: 'utf-8'})));
 
@@ -26,6 +27,8 @@ if (!fs.existsSync('./emulPaths/paths.json')) {
    const message = `This app is located at: ${path}`
    console.log(message);
  })*/
+
+// Read res folder to get 
 
 
 

@@ -27,3 +27,8 @@
     from { width: 43px; }
     to { width: 202px; }
 }
+
+@keyframes modal-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
