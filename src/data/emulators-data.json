@@ -1,0 +1,64 @@
+// This file is for the correctly functioning of this program, 
+// manipuling this file may cause errors on the program.
+[
+    {
+        "id": 0,
+        "name": "NES",
+        "platform": "Nintendo",
+        "release-": "1983",
+        "exe": "",
+        "installed": false,
+        "image" : "./src/img/nintendo/nes.png",
+        "type" : "home_console"
+    },
+    {
+        "id": 1,
+        "name": "SNES",
+        "platform": "Nintendo",
+        "release-": "1990",
+        "exe": "",
+        "installed": false,
+        "image" : "./src/img/nintendo/snes.png",
+        "type" : "home_console"
+    },
+    {
+        "id": 2,
+        "name": "Nintendo 64",
+        "platform": "Nintendo",
+        "release-": "1996",
+        "exe": "",
+        "installed": false,
+        "image" : "./src/img/nintendo/n64.png",
+        "type" : "home_console"
+    },
+    {
+        "id": 3,
+        "name": "GAMECUBE",
+        "platform": "Nintendo",
+        "release-": "2001",
+        "exe": "",
+        "installed": false,
+        "image" : "./src/img/nintendo/gamecube.png",
+        "type" : "home_console"
+    },
+    {
+        "id": 4,
+        "name": "Wii",
+        "platform": "Nintendo",
+        "release-": "2006",
+        "exe": "",
+        "installed": false,
+        "image" : "./src/img/nintendo/wii.png",
+        "type" : "home_console"
+    },
+    {
+        "id": 4,
+        "name": "Wii U",
+        "platform": "Nintendo",
+        "release-": "2012",
+        "exe": "",
+        "installed": false,
+        "image" : "./src/img/nintendo/wiiU.png",
+        "type" : "home_console"
+    }
+]

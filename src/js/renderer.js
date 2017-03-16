@@ -5,28 +5,26 @@ const ipc = require('electron').ipcRenderer
 const fs = require('fs');
 const http = require ('http');
 
-// Create folder & json to store emulators path
-// if (!fs.existsSync('./emulPaths')) {
-//     fs.mkdirSync('./emulPaths');
-// }
+// Get app path
+//  ipc.send('get-app-path');
 
-// if (!fs.existsSync('./emulPaths/paths.json')) {
-//     fs.openSync('./emulPaths/paths.json', 'w');
+//  ipc.on('got-app-path', function (event, path) {
+//    const message = `This app is located at: ${path}`
+   
+//    // Create folder & json to store emulators path
+//     if (!fs.existsSync(`${path}/src/emulators-path`)) {
+//       fs.mkdirSync(`${path}/src/emulators-path`);
+//     }
+//  });
+
+
+
+// if (!fs.existsSync(`${app_path}/emulators_path/paths.json`)) {
+//      fs.openSync(`${app_path}/emulators_path/paths.json`, 'w');
 // }
 
 //console.log(JSON.parse(fs.readFileSync('./emulPaths/paths.json',{encoding: 'utf-8'})));
 
-//GET PATH APP
- /*const appInfoBtn = document.getElementById('path')
-
- appInfoBtn.addEventListener('click', function() {
-    ipc.send('get-app-path')
- })
-
- ipc.on('got-app-path', function (event, path) {
-   const message = `This app is located at: ${path}`
-   console.log(message);
- })*/
 
 // Read res folder to get 
 

@@ -248,3 +248,10 @@ html, body {
     line-height: 3.2;
     cursor: pointer;
 }
+
+.active {
+    filter: grayscale(100%);
+}
+.active:hover {
+    filter: none;
+}
