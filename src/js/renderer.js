@@ -26,7 +26,34 @@ const http = require ('http');
 //console.log(JSON.parse(fs.readFileSync('./emulPaths/paths.json',{encoding: 'utf-8'})));
 
 
-// Read res folder to get 
+// Read data folder to get list of emulators
+let emulData = JSON.parse(fs.readFileSync('./src/data/emulators-data.json',{encoding: 'utf-8'}));
+let platformList = JSON.parse(fs.readFileSync('./src/data/platforms.json',{encoding: 'utf-8'}));
+let listTemplate = '<div style="text-aling: left">';
+let platformTemplate;
+
+let list = document.getElementById('eList');
+let filter = document.getElementById('platform');
+
+// Create list html template
+emulData.forEach(res => {
+    if(res.installed)
+        return;
+
+    listTemplate +=
+        `<div click="emulSelected(${res.id})" class="select-emul">
+            <img src="${res.image}">
+        </div>`;
+});
+
+listTemplate += "</div>"
+
+platformList.forEach(res => {
+    platformTemplate += `<option>${res}</option>`;
+});
+
+list.innerHTML = listTemplate ;
+filter.innerHTML = platformTemplate;
 
 
 

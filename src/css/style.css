@@ -211,8 +211,31 @@ html, body {
     left: 1.3%;
     top: 10%;
     box-shadow: inset 0px 0px 8px black;
-
+    text-align: center;
 }
+
+.add-emul-modal > .modal-frame > .modal-content > div > .select-emul {
+    display: inline-block;
+    margin: 15px 5px 5px 5px;
+    text-align: center;
+    width: 16%;
+    height: 120px;
+    transition: all 1s;
+    overflow-y: visible;
+}
+.add-emul-modal > .modal-frame > .modal-content > div > .select-emul > img {
+    width: 180px;
+    padding-bottom: 15px;
+    margin-top: 15px;
+    text-align: center;
+}
+.add-emul-modal > .modal-frame > .modal-content > .select-emul > p {
+    color: white;
+    font-family: 'Roboto', Arial;
+    font-weight: 300;
+    margin: 10px 0 15px 0;
+}
+
 .footer {
     width: 100%;
     height: 55px;
