@@ -29,10 +29,10 @@ const http = require ('http');
 // Read data folder to get list of emulators
 let emulData = JSON.parse(fs.readFileSync('./src/data/emulators-data.json',{encoding: 'utf-8'}));
 let platformList = JSON.parse(fs.readFileSync('./src/data/platforms.json',{encoding: 'utf-8'}));
-let listTemplate = '<div style="text-aling: left">';
+let listTemplate = '';
 let platformTemplate;
 
-let list = document.getElementById('eList');
+let list = document.getElementById('latList');
 let filter = document.getElementById('platform');
 
 // Create list html template
@@ -41,15 +41,13 @@ emulData.forEach(res => {
         return;
 
     listTemplate +=
-        `<div click="emulSelected(${res.id})" class="select-emul">
+        `<div click="emulSelected(${res.id})" class="select-emul" title="${res.name}">
             <img src="${res.image}">
         </div>`;
 });
 
-listTemplate += "</div>"
-
 platformList.forEach(res => {
-    platformTemplate += `<option>${res}</option>`;
+    platformTemplate += `<option value="${res}">${res}</option>`;
 });
 
 list.innerHTML = listTemplate ;
