@@ -4,59 +4,59 @@
 const ipc = require('electron').ipcRenderer
 const fs = require('fs');
 
+// Variables to save JSON data
 let emulData = '';
 let platformList;
 let sortyByList;
 
- ipc.send('get-app-path');
+// Variables to create HTML template
+let listTemplate = '';
+let platformTemplate;
+let sortTemplate;
 
+// Element where templates goint
+let list = document.getElementById('latList');
+let filter = document.getElementById('platform');
+let sortBy = document.getElementById('sortBy');
+
+// Defaul filters
+let platform = 'All';
+let sort = 'release';
+
+// Get app path
+ ipc.send('get-app-path');
  ipc.on('got-app-path', function (event, path) {
+    
+    // Read data folder to get list of emulators
     emulData = JSON.parse(fs.readFileSync(`${path}/src/data/emulators-data.json`,{encoding: 'utf-8'}));
     platformList = JSON.parse(fs.readFileSync(`${path}/src/data/platforms.json`,{encoding: 'utf-8'}));
-    sortyByList = JSON.parse(fs.readFileSync(`${path}/src/data/filters.json`,{encoding: 'utf-8'}));
-
-    
+    sortyByList = JSON.parse(fs.readFileSync(`${path}/src/data/filters.json`,{encoding: 'utf-8'})); 
  });
-setTimeout(function() {
-    console.log(emulData, 'aaa');
-}, 0)
+
+function setUp(emulData, platformList, sortyByList) {
+
+}
 
 
-// if (!fs.existsSync(`${app_path}/emulators_path/paths.json`)) {
-//      fs.openSync(`${app_path}/emulators_path/paths.json`, 'w');
-// }
-
-//console.log(JSON.parse(fs.readFileSync('./emulPaths/paths.json',{encoding: 'utf-8'})));
 
 
-// Read data folder to get list of emulators
-// let listTemplate = '';
-// let platformTemplate;
-// let sortTemplate;
 
-// let list = document.getElementById('latList');
-// let filter = document.getElementById('platform');
-// let sortBy = document.getElementById('sortBy'); 
 
-// // Defaul filters
-// let platform = 'All';
-// let sort = 'release';
+sortList(sort);
+templateList();
 
-// sortList(sort);
-// templateList();
+// Populate filters dropdown
+platformList.forEach(res => {
+    platformTemplate += `<option value="${res}">${res}</option>`;
+});
 
-// // Populate filters dropdown
-// platformList.forEach(res => {
-//     platformTemplate += `<option value="${res}">${res}</option>`;
-// });
+sortyByList.forEach( res => {
+    sortTemplate += `<option value="${res.value}">${res.field}</option>`
+});
 
-// sortyByList.forEach( res => {
-//     sortTemplate += `<option value="${res.value}">${res.field}</option>`
-// });
-
-// list.innerHTML = listTemplate ;
-// filter.innerHTML = platformTemplate;
-// sortBy.innerHTML = sortTemplate;
+list.innerHTML = listTemplate ;
+filter.innerHTML = platformTemplate;
+sortBy.innerHTML = sortTemplate;
 
 // Sort emulators list
 function sortList(value) {
