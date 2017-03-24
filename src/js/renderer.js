@@ -31,32 +31,27 @@ let sort = 'release';
     emulData = JSON.parse(fs.readFileSync(`${path}/src/data/emulators-data.json`,{encoding: 'utf-8'}));
     platformList = JSON.parse(fs.readFileSync(`${path}/src/data/platforms.json`,{encoding: 'utf-8'}));
     sortyByList = JSON.parse(fs.readFileSync(`${path}/src/data/filters.json`,{encoding: 'utf-8'})); 
+
+    setUp(emulData, platformList, sortyByList);
  });
 
 function setUp(emulData, platformList, sortyByList) {
+    sortList(sort);
+    templateList();
 
+    // Populate filters dropdown
+    platformList.forEach(res => {
+        platformTemplate += `<option value="${res}">${res}</option>`;
+    });
+
+    sortyByList.forEach( res => {
+        sortTemplate += `<option value="${res.value}">${res.field}</option>`
+    });
+
+    list.innerHTML = listTemplate ;
+    filter.innerHTML = platformTemplate;
+    sortBy.innerHTML = sortTemplate;
 }
-
-
-
-
-
-
-sortList(sort);
-templateList();
-
-// Populate filters dropdown
-platformList.forEach(res => {
-    platformTemplate += `<option value="${res}">${res}</option>`;
-});
-
-sortyByList.forEach( res => {
-    sortTemplate += `<option value="${res.value}">${res.field}</option>`
-});
-
-list.innerHTML = listTemplate ;
-filter.innerHTML = platformTemplate;
-sortBy.innerHTML = sortTemplate;
 
 // Sort emulators list
 function sortList(value) {
