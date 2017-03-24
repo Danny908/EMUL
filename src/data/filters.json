@@ -1,0 +1,14 @@
+[
+    {
+        "field": "Release date",
+        "value": "release"
+    },
+    {
+        "field": "Name",
+        "value": "name"
+    },
+    {
+        "field": "Console Type",
+        "value": "type"
+    }
+]
