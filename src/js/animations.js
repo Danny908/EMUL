@@ -6,7 +6,7 @@ collapseBtn.addEventListener('click', function() {
     let eList = document.getElementById('e-list');
     let tag = document.getElementById('list-tag');
     
-    collapseBtn.setAttribute('hidden', true);
+    this.setAttribute('hidden', true);
     showBtn.removeAttribute('hidden');
     eList.classList.add('emul-list-collapesed');
 
@@ -23,7 +23,7 @@ showBtn.addEventListener('click', function() {
     let eList = document.getElementById('e-list');
     let tag = document.getElementById('list-tag');
     
-    showBtn.setAttribute('hidden', true);
+    this.setAttribute('hidden', true);
     collapseBtn.removeAttribute('hidden');
     eList.classList.remove('emul-list-collapesed');
     eList.classList.add('emul-list-show');
@@ -33,7 +33,7 @@ showBtn.addEventListener('click', function() {
     }, 160);
 });
 
-//Show dialog window
+// Show dialog window
 let showModal = document.getElementById('add-emul');
 let addEmulModal = document.getElementById('add-emulator-modal');
 let frameModal = document.getElementById('m-frame');
@@ -42,11 +42,22 @@ let hideModal = document.getElementById('close-modal');
 showModal.addEventListener('click', function() {
     addEmulModal.removeAttribute('hidden');
     frameModal.classList.add('modal-in');
-})
+});
 
 hideModal.addEventListener('click', function() {
     frameModal.classList.remove('modal-in');
     addEmulModal.setAttribute('hidden', true);
+});
+
+// Order by animation
+let showBy = document.getElementById('orderBy');
+
+showBy.addEventListener('click',function() {
+    if(this.hasAttribute('style')) {
+        this.removeAttribute('style');
+        return;
+    }
+    this.setAttribute('style', 'transform: rotate(180deg)');
 })
 
 // Welcome Screen

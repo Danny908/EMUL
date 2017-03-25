@@ -1,0 +1,11 @@
+[
+    {
+        "name": "FCEUX",
+        "image": "",
+        "link": "",
+        "mirror": "",
+        "mirror1": "",
+        "homepage": "http://www.fceux.com/web/home.html",
+        "description": "FCEUX is a Nintendo Entertainment System (NES), Famicom, Famicom Disk System (FDS), and Dendy emulator. It supports NTSC (USA/JPN), PAL (European), and NTSC-PAL Hybrid modes. It supports both Windows and SDL versions for cross compatibility.\nThe FCEUX concept is that of an 'all in one' emulator that offers accurate emulation and the best options for both casual play and a variety of more advanced emulator functions. For pro users, FCEUX offers tools for debugging, rom-hacking, map making, Tool-assisted movies, and Lua scripting."
+    }
+]

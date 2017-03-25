@@ -64,5 +64,27 @@
         "image" : "./img/nintendo/wiiU.png",
         "type" : "home_console",
         "rooms" : ""
+    },
+    {
+        "id": 5,
+        "name": "Gameboy",
+        "platform": "Nintendo",
+        "release": 1989,
+        "exe": "",
+        "installed": false,
+        "image" : "./img/nintendo/gameboy.png",
+        "type" : "portable_console",
+        "rooms" : ""
+    },
+    {
+        "id": 5,
+        "name": "Gameboy Advance",
+        "platform": "Nintendo",
+        "release": 2001,
+        "exe": "",
+        "installed": false,
+        "image" : "./img/nintendo/gameboy-advance.png",
+        "type" : "portable_console",
+        "rooms" : ""
     }
 ]

@@ -49,13 +49,21 @@
           <select id="sortBy"></select>
           <i class="material-icons">expand_more</i>
         </div>
+        <div class="filters">
+          <label>Show by :</label>
+          <button id="orderBy" value="desc" title="DESC" class="showBy material-icons">arrow_downward</button>
+        </div>
         <div class="modal-content" id="eList">
           <div class="lateral-list" id="latList"></div>
+          <div class="emul-information">
+            <h2 class="emul-name">EMUL NAME</h2>
+            <p class="emul-description">Emul description....</p>
+            <button>Download <i class="material-icons">file_download</i></button>
+          </div>
         </div>
       </div>
     </div>
   </body>
-
   <script>
     // You can also require other files to run in this process
     require('./js/renderer.js');

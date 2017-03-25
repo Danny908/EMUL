@@ -209,6 +209,20 @@ html, body {
     background-color: rgba(255,255,255,0.2);
 }
 
+.add-emul-modal > .modal-frame > .filters > .showBy {
+    color: white;
+    position: absolute;
+    background-color: transparent;
+    right: -26px;
+    top: -5px;
+    transition: all 0.5s;
+    border: none;
+}
+
+.add-emul-modal > .modal-frame > .filters > .showBy:focus {
+    outline: none;
+}
+
 .add-emul-modal > .modal-frame > .modal-content {
     background-color: #262626;
     width: 97.2%;
@@ -227,6 +241,7 @@ html, body {
     width: 101px;
     height: 100%;
     padding-right: 5px;
+    float: left;
 }
 
 .add-emul-modal > .modal-frame > .modal-content > .lateral-list > .select-emul {
@@ -238,11 +253,16 @@ html, body {
     width: 90%;
     padding-bottom: 15px;
 }
-.add-emul-modal > .modal-frame > .modal-content > .select-emul > p {
+.add-emul-modal > .modal-frame > .modal-content > .lateral-list > .select-emul > p {
     color: white;
     font-family: 'Roboto', Arial;
     font-weight: 300;
     margin: 10px 0 15px 0;
+}
+
+.add-emul-modal > .modal-frame > .modal-content > .emul-information{ 
+    overflow-x: hidden;
+    height: 100%;
 }
 
 .footer {

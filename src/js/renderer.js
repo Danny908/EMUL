@@ -18,10 +18,12 @@ let sortTemplate;
 let list = document.getElementById('latList');
 let filter = document.getElementById('platform');
 let sortBy = document.getElementById('sortBy');
+let showBy = document.getElementById('orderBy');
 
 // Defaul filters
 let platform = 'All';
 let sort = 'release';
+let order = 'desc';
 
 // Get app path
  ipc.send('get-app-path');
@@ -35,9 +37,10 @@ let sort = 'release';
     setUp(emulData, platformList, sortyByList);
  });
 
+// Load default data view
 function setUp(emulData, platformList, sortyByList) {
-    sortList(sort);
-    templateList();
+    sortList(sort, order);
+    templateList(platform);
 
     // Populate filters dropdown
     platformList.forEach(res => {
@@ -48,34 +51,85 @@ function setUp(emulData, platformList, sortyByList) {
         sortTemplate += `<option value="${res.value}">${res.field}</option>`
     });
 
-    list.innerHTML = listTemplate ;
     filter.innerHTML = platformTemplate;
     sortBy.innerHTML = sortTemplate;
 }
 
-// Sort emulators list
-function sortList(value) {
-    if(typeof(emulData[0][value]) === 'number')
-        emulData.sort(function(x, y) {
-            return x[value] - y[value];
-        });
+// Filters functions
+filter.addEventListener('change', function(e) {
+    platform =  e.target.value;
+    sortList(sort, order);
+    templateList(platform);
+});
+
+sortBy.addEventListener('change',function(e) {
+    sort = e.target.value;
+    sortList(sort, order);
+    templateList(platform);
+});
+
+showBy.addEventListener('click',function(e) {
+    if (e.target.value === 'desc')
+        order = 'asc';
     else
-        emulData.sort(function(x, y) {
-            return (x[value] > y[value]) - (x[value] < y[value]);
-        });
+        order = 'desc';
+
+    this.setAttribute('value', order);
+    this.setAttribute('title', order.toUpperCase());
+    sortList(sort, order);
+    templateList(platform);
+});
+
+// Sort emulators list
+function sortList(value, order) {
+    if(order === 'desc') {
+        if(typeof(emulData[0][value]) === 'number')
+            emulData.sort(function(x, y) {
+                return x[value] - y[value];
+            });
+        else
+            emulData.sort(function(x, y) {
+                return (x[value] > y[value]) - (x[value] < y[value]);
+            });
+    } else {
+        if(typeof(emulData[0][value]) === 'number')
+            emulData.sort(function(x, y) {
+                return y[value] - x[value];
+            });
+        else
+            emulData.sort(function(x, y) {
+                return (y[value] > x[value]) - (y[value] < x[value]);
+            });
+    }
 }
 
 // Create modal list html template
-function templateList() {
-    emulData.forEach(res => {
-    if(res.installed)
-        return;
+function templateList(platform) {
+    //Clean variable
+    listTemplate = '';
 
-    listTemplate +=
-        `<div click="emulSelected(${res.id})" class="select-emul" title="${res.name}">
-            <img src="${res.image}">
-        </div>`;
-    });
+    if(platform === 'All') {
+        emulData.forEach(res => {
+        if(res.installed)
+            return;
+            
+        listTemplate +=
+            `<div click="emulSelected(${res.id})" class="select-emul" title="${res.name}">
+                <img src="${res.image}">
+            </div>`;
+        });
+    } else {
+        emulData.forEach(res => {
+        if(res.installed || res.platform !== platform)
+            return;
+            
+        listTemplate +=
+            `<div click="emulSelected(${res.id})" class="select-emul" title="${res.name}">
+                <img src="${res.image}">
+            </div>`;
+        });
+    }
+    list.innerHTML = listTemplate ;
 }
 
 
