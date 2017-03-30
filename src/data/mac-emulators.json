@@ -1,0 +1,44 @@
+[
+    {
+        "id": 0,
+        "name": "Nestopia",
+        "autor": "Richard Bannister",
+        "os": "Mac OS X 10.5 or later",
+        "image": "./img/nintendo/backgrounds/nes-back.jpg",
+        "logo": "./img/nintendo/logos/nes-logo.png",
+        "link": "http://maczone.free.fr/DIRECT_LINKING_NOT_PERMITTED_124398623984/nestopia-141.dmg",
+        "mirror": "",
+        "mirror1": "",
+        "size": "2.2MB",
+        "homepage": "http://www.bannister.org/software/nestopia.htm",
+        "description": "Nestopia is the current king of the NES emulation hill. It uses highly optimized cycle exact emulation, allowing it to run titles that rely on precise timing, many of which break under inferior emulators. This accurate emulation does come at a cost; Nestopia requires a minimum of a 600MHz machine for full speed; but if you have one, this the best available NES emulation for Mac."
+    },
+    {
+        "id": 1,
+        "name": "BSNES",
+        "autor": "Richard Bannister",
+        "os": "Mac OS X 10.5 or later",
+        "image": "./img/nintendo/backgrounds/snes-back.jpg",
+        "logo": "./img/nintendo/logos/snes-logo.png",
+        "link": "http://maczone.free.fr/DIRECT_LINKING_NOT_PERMITTED_124398623984/bsnes-068.dmg",
+        "mirror": "",
+        "mirror1": "",
+        "size": "4MB",
+        "homepage": "http://www.bannister.org/software/bsnes.htm",
+        "description": "BSNES has a somewhat different purpose to most emulators; it focuses on accuracy over performance. To that end, it does not include any game specific hacks, or idle-loop skipping optimizations commonly found in other emulators. To add to the fun, it uses a cycle accurate hardware emulation. The net result of all this is the highest system requirements of any software I've released to date; those without an Intel-based Mac need not apply. If you meet the requirements, however, this is the most accurate SNES emulation available on the Macintosh platform."
+    },
+    {
+        "id": 7,
+        "name": "Boycott Advance",
+        "autor": "Richard Bannister",
+        "os": "Mac OS X 10.5 or later",
+        "image": "./img/nintendo/backgrounds/gba-back.jpg",
+        "logo": "./img/nintendo/logos/gba-logo.png",
+        "link": "http://maczone.free.fr/DIRECT_LINKING_NOT_PERMITTED_124398623984/ba-040.dmg",
+        "mirror": "",
+        "mirror1": "",
+        "size": "1.2MB",
+        "homepage": "http://www.bannister.org/software/ba.htm",
+        "description": "Boycott Advance was developed to run home brew Gameboy Advance software, and to that end it works quite well. It is also able to run a wide variety of commercial games, although there are some known issues that prevent some titles, particularly newer ones, from working correctly."
+    }
+]

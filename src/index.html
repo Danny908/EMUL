@@ -34,6 +34,8 @@
           <h3>Add Emulator</h3>
           <i class="material-icons">add_circle_outline</i>
         </div>
+        <progress id="progress"></progress>
+        <p id="status" class="status" hidden></p>
       </div>
     </div>
     <div class="add-emul-modal" id="add-emulator-modal" hidden>
@@ -55,14 +57,24 @@
         </div>
         <div class="modal-content" id="eList">
           <div class="lateral-list" id="latList"></div>
-          <div class="emul-information">
-            <h2 class="emul-name">EMUL NAME</h2>
-            <p class="emul-description">Emul description....</p>
-            <button>Download <i class="material-icons">file_download</i></button>
+          <div id="emulInformation" class="emul-information">
+            <h2 id="emulName" class="emul-name"></h2>
+            <p id="emulDesc" class="emul-description"></p>
+            <ul id="aditionalInfo" class="aditional-info">
+              <ul></ul>
+            </ul>
+            <button id="emulDownload" title="Download" class="download" disabled>
+              <i class="material-icons">file_download</i>
+            </button>
+            <button id="emulPage" title="Home Page" class="home-page" disabled>
+              <i class="material-icons">home</i>
+            </button>
+            <img id="emulLogo" class="emul-logo">
           </div>
-        </div>
-      </div>
-    </div>
+         </div>
+       </div>
+     </div>
+   </div>
   </body>
   <script>
     // You can also require other files to run in this process

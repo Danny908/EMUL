@@ -38,6 +38,12 @@ let showModal = document.getElementById('add-emul');
 let addEmulModal = document.getElementById('add-emulator-modal');
 let frameModal = document.getElementById('m-frame');
 let hideModal = document.getElementById('close-modal');
+let modalContainer = document.getElementById('add-emulator-modal');
+
+modalContainer.addEventListener('click', function(e) {
+    frameModal.classList.remove('modal-in');
+    addEmulModal.setAttribute('hidden', true);
+})
 
 showModal.addEventListener('click', function() {
     addEmulModal.removeAttribute('hidden');
@@ -49,6 +55,10 @@ hideModal.addEventListener('click', function() {
     addEmulModal.setAttribute('hidden', true);
 });
 
+frameModal.addEventListener('click', function(e) {
+    e.stopPropagation();
+})
+
 // Order by animation
 let showBy = document.getElementById('orderBy');
 
@@ -58,7 +68,7 @@ showBy.addEventListener('click',function() {
         return;
     }
     this.setAttribute('style', 'transform: rotate(180deg)');
-})
+});
 
 // Welcome Screen
 function welcomeOut() {

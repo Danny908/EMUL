@@ -1,7 +1,9 @@
 [
     {
+        "id": 0,
         "name": "FCEUX",
-        "image": "",
+        "image": "./img/nintendo/backgrounds/nes-back.png",
+        "logo": "./img/nintendo/logos/nes-logo.png",
         "link": "",
         "mirror": "",
         "mirror1": "",
