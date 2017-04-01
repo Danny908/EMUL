@@ -43,17 +43,17 @@
         <i class="close-modal material-icons" id="close-modal" title="Close">close</i>
         <div class="filters">
           <label>Platform :</label>
-          <select id="platform"></select>
+          <select onchange="onChangePlatform(this)" id="platform"></select>
           <i class="material-icons">expand_more</i>
         </div>
         <div class="filters">
           <label>Sort by :</label>
-          <select id="sortBy"></select>
+          <select onchange="onChangeSort(this)" id="sortBy"></select>
           <i class="material-icons">expand_more</i>
         </div>
         <div class="filters">
           <label>Show by :</label>
-          <button id="orderBy" value="desc" title="DESC" class="showBy material-icons">arrow_downward</button>
+          <button onclick="onChangeOrder(this)" id="orderBy" value="desc" title="DESC" class="showBy material-icons">arrow_downward</button>
         </div>
         <div class="modal-content" id="eList">
           <div class="lateral-list" id="latList"></div>
@@ -80,7 +80,6 @@
     // You can also require other files to run in this process
     require('./js/renderer.js');
     require('./js/animations.js');
-    require('./js/dinamic-content.js');
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </html>
