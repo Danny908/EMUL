@@ -14,6 +14,10 @@
     "Emulator",
     "WIP"
   ],
+  "files": [
+    "**/*",
+    "!src/EMULATORS"
+  ],
   "author": "Danny Torres",
   "license": "MIT",
   "devDependencies": {

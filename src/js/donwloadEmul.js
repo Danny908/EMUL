@@ -6,6 +6,7 @@ const http = require ('http');
 const unzip = require('unzip');
 const dmg = require('dmg');
 const ncp = require ('ncp');
+const path = require('path');
 
 // Machine OS
 const os = process.platform;
@@ -45,6 +46,7 @@ let numOfDownloads = 0;
 let localId;
 let globalId;
 let globalPath;
+let exeFile;
 
 // Main module
 module.exports = {
@@ -180,10 +182,10 @@ module.exports = {
         } 
     },
     // Download selected emulator
-    downloadEmul: function(url, emulators, extencion, data, platformList, sortyByList) {
+    downloadEmul: function(url, emulators, extencion, data, platformList, sortyByList, exeExtencion) {
         let newEmulator;
-        if(!fs.existsSync('./src/EMULATORS')) {
-            fs.mkdirSync('./src/EMULATORS');
+        if(!fs.existsSync(`${globalPath}/src/EMULATORS`)) {
+            fs.mkdirSync(`${globalPath}/src/EMULATORS`);
         }
         progress.style.height = '4px';
         status.removeAttribute('hidden');
@@ -195,8 +197,8 @@ module.exports = {
                 status.innerHTML = `EMULATOR NOT FOUND`;
                 return;
             }
-        fs.mkdirSync(`./src/EMULATORS/${emulators[localId].name}`);
-        newEmulator = fs.createWriteStream(`./src/EMULATORS/${emulators[localId].name}/emulator.${extencion}`)
+        fs.mkdirSync(`${globalPath}/src/EMULATORS/${emulators[localId].name}`);
+        newEmulator = fs.createWriteStream(`${globalPath}/src/EMULATORS/${emulators[localId].name}/emulator.${extencion}`)
         
         numOfDownloads++;
         fileSize = response.headers[ 'content-length' ];
@@ -218,7 +220,7 @@ module.exports = {
             numOfDownloads--;
             if(numOfDownloads === 0) {
                 status.innerHTML = `INSTALLING`;
-                module.exports.installEmul(os, emulators, extencion, data, platformList, sortyByList);
+                module.exports.installEmul(os, emulators, extencion, data, platformList, sortyByList, exeExtencion);
             }
             else {
                 status.innerHTML += `<br>INSTALLING`;
@@ -229,12 +231,15 @@ module.exports = {
         });
     },
     // Unpackage new emulator
-    installEmul: function(os, emulators, extencion, data, platformList, sortyByList) {
+    installEmul: function(os, emulators, extencion, data, platformList, sortyByList, exeExtencion) {
         switch(os) {
         case 'darwin':
             dmg.mount(`${globalPath}/src/EMULATORS/${emulators[localId].name}/emulator.dmg`, function(err, path) {    
+                // Clone dir
                 module.exports.cloneDir(path, emulators);
-                //Create rooms folder
+                // Set .exe path
+                module.exports.getExe(path, exeExtencion);
+                //Create roms folder
                 fs.mkdirSync(`${globalPath}/src/EMULATORS/${emulators[localId].name}/roms`);
                 module.exports.updateState(emulators, extencion, data, platformList, sortyByList);
                 dmg.unmount(path, function(err) {});
@@ -268,10 +273,13 @@ module.exports = {
             status.setAttribute('hidden', true);
         },500);
 
-        // Change emulator state to installed
+        // Change emulator state to installed, save roms path, save exe path
         data.forEach(emul => {
-            if(emul.id === globalId)
+            if(emul.id === globalId) {
                 emul.installed = true;
+                emul.roms = `${globalPath}/src/EMULATORS/${emulators[localId].name}/roms`;
+                emul.exe = `${globalPath}/src/EMULATORS/${emulators[localId].name}/${exeFile}`;
+            }
         });
         console.log(data);
 
@@ -286,5 +294,13 @@ module.exports = {
             emulSelected(9999, true);
         else
             emulSelected(9999, true);
+        },
+        getExe: function(pathDir, exeExtencion) {
+            let files = fs.readdirSync(pathDir);
+            files.forEach(exe => {
+                if(path.extname(exe) === exeExtencion) {
+                    exeFile = exe;
+                }
+            });   
         }
 }

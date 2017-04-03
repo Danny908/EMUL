@@ -7,6 +7,7 @@ const fs = require('fs');
 
 // Required local files 
 const newEmulator = require('./donwloadEmul');
+const launchEmulator = require('./launchEmul');
 
 // Machine OS
 const os = process.platform;
@@ -19,6 +20,7 @@ let emulators;
 
 // Other variables
 let extencion;
+let emulExtencion;
 let globalPath;
 
 // Get app path
@@ -33,12 +35,17 @@ let globalPath;
     if(process.platform === 'darwin') {
         emulators = JSON.parse(fs.readFileSync(`${path}/src/data/mac-emulators.json`,{encoding: 'utf-8'}));
         extencion = 'dmg';
+        emulExtencion = '.app';
     } else {
 
     }
 
+    launchEmulator.setUp(emulData);
     newEmulator.setUp(emulData, platformList, sortyByList, globalPath);
  });
+/* = = = = = = =
+* Modal section
+= = = = = = = */
 
 // Filters call functions
 window.onChangePlatform = onChangePlatform;
@@ -68,8 +75,14 @@ emulPage.addEventListener('click', function(e) {
 // TODO: Add support for multiple downloads
 emulDownload.addEventListener('click', function(e) {
     let url = e.currentTarget.value;
-    newEmulator.downloadEmul(url, emulators, extencion, emulData, platformList, sortyByList);
+    newEmulator.downloadEmul(url, emulators, extencion, emulData, platformList, sortyByList, emulExtencion);
 });
+
+/* = = = = = = =
+* Main section
+= = = = = = = */
+
+// Launch emulators
 
 
 
