@@ -6,11 +6,23 @@ const ipc = require('electron').ipcRenderer;
 const fs = require('fs');
 
 // Required local files 
-const newEmulator = require('./donwloadEmul');
+const downloadEmulator = require('./donwloadEmul');
 const launchEmulator = require('./launchEmul');
 
 // Machine OS
 const os = process.platform;
+
+// Element where templates goin to be inserted
+let eList = document.getElementById('eList');
+let emulName = document.getElementById('emulName');
+let emulDesc = document.getElementById('emulDesc');
+let aditionalInfo = document.getElementById('aditionalInfo');
+let emulPage = document.getElementById('emulPage');
+let emulLogo = document.getElementById('emulLogo');
+let emulDownload = document.getElementById('emulDownload');
+let templateContainer = [eList, emulName, emulDesc, aditionalInfo, emulPage, emulLogo, emulDownload];
+let progress = document.getElementById('progress');
+let status = document.getElementById('status');
 
 // Variables to save JSON data
 let emulData = '';
@@ -22,11 +34,17 @@ let emulators;
 let extencion;
 let emulExtencion;
 let globalPath;
+let runTimeIDs;
+
+// Default filters value
+let filter = 'release';
+let order = 'desc';
+let platform = 'All';
 
 // Get app path
  ipc.send('get-app-path');
  ipc.on('got-app-path', function (event, path) {
-    globalPath = path
+    globalPath = path;
     // Read data folder to get list of emulators
     emulData = JSON.parse(fs.readFileSync(`${path}/src/data/emulators-data.json`,{encoding: 'utf-8'}));
     platformList = JSON.parse(fs.readFileSync(`${path}/src/data/platforms.json`,{encoding: 'utf-8'}));
@@ -39,30 +57,32 @@ let globalPath;
     } else {
 
     }
-
+    downloadEmulator.setUp(emulData, globalPath, platformList, sortyByList);
     launchEmulator.setUp(emulData);
-    newEmulator.setUp(emulData, platformList, sortyByList, globalPath);
  });
-/* = = = = = = =
-* Modal section
-= = = = = = = */
 
+/* = = = = = = = = = = = =
+/*   Modal section
+/* = = = = = = = = = = = */
 // Filters call functions
 window.onChangePlatform = onChangePlatform;
 function onChangePlatform(e) {
-    newEmulator.filter(e, emulData);
+    platform = e.value;
+    downloadEmulator.sort(filter, order, emulData, platform);
 }
 window.onChangeSort = onChangeSort;
 function onChangeSort(e) {
-    newEmulator.sortBy(e, emulData);
+    filter = e.value;
+    downloadEmulator.sort(filter, order, emulData, platform);
 }
 window.onChangeOrder = onChangeOrder;
 function onChangeOrder(e) {
-    newEmulator.showBy(e, emulData);
+    order = (order === 'desc') ? 'asc' : 'desc';
+    downloadEmulator.sort(filter, order, emulData, platform);
 }
 window.emulSelected = emulSelected;
-function emulSelected(id, set = false){
-  newEmulator.emulDetails(id, emulators, set);
+function emulSelected(id){
+  runTimeIDs = downloadEmulator.detailsTemplate(id, emulators, templateContainer);
 }
 
 // Open emulators home page
@@ -75,7 +95,7 @@ emulPage.addEventListener('click', function(e) {
 // TODO: Add support for multiple downloads
 emulDownload.addEventListener('click', function(e) {
     let url = e.currentTarget.value;
-    newEmulator.downloadEmul(url, emulators, extencion, emulData, platformList, sortyByList, emulExtencion);
+    downloadEmulator.download(url, emulData, emulators, progress, status, runTimeIDs, extencion, globalPath);
 });
 
 /* = = = = = = =
