@@ -1,20 +1,23 @@
 // Template variables containers
 let listContent = document.getElementById('listContent');
-// Template variables
-let emulInsalled = '';
 
 module.exports = {
+    // Check for installed emulators
     setUp: function(data) {
-        // Check for installed emulators
+        let emulInsalled = '';
         data.forEach(res => {
             if(!res.installed)
                 return;
             emulInsalled +=
-            `<div>
-                <p>${res.name}<img src="${res.image}"></p>
+            `<div onclick="emulInstalled(${res.id})" class="installed-container">
+                <p>${res.name}</p>
+                <img src="${res.image}">
             </div>`;
         });
-        listContent.innerHTML = emulInsalled;
-        
+        listContent.innerHTML = emulInsalled;   
+    },
+    // Load rooms
+    loadRoms: function(emulator) {
+        console.log(emulator);
     }
 }

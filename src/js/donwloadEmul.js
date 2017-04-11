@@ -4,6 +4,7 @@ const unzip = require('unzip');
 const dmg = require('dmg');
 const ncp = require ('ncp');
 const path = require('path');
+const launch = require('./launchEmul');
 
 // Elements where templates goin to be inserted
 let platform = document.getElementById('platform');
@@ -66,6 +67,7 @@ module.exports = {
     },
     // Populate emulators list
     listTemplate: function(emulatorsData, platform) {
+        let checkAnim = document.getElementsByClassName('select-emul');
         latList.innerHTML = '';
         switch(platform) {
             case 'All':
@@ -232,6 +234,7 @@ module.exports = {
         fs.writeFileSync(`${appPath}/src/data/emulators-data.json`, JSON.stringify(emulatorsData), {encoding: 'utf-8'});
         module.exports.listTemplate(emulatorsData, currentPlatform);
         module.exports.removeAttributes(localTemplates, IDs[1], osEmulators);
+        launch.setUp(emulatorsData);
 
     }
 }

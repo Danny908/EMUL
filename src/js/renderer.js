@@ -5,7 +5,7 @@ const {shell} = require('electron');
 const ipc = require('electron').ipcRenderer;
 const fs = require('fs');
 
-// Required local files 
+// Required local JS files 
 const downloadEmulator = require('./donwloadEmul');
 const launchEmulator = require('./launchEmul');
 
@@ -64,6 +64,7 @@ let platform = 'All';
 /* = = = = = = = = = = = =
 /*   Modal section
 /* = = = = = = = = = = = */
+
 // Filters call functions
 window.onChangePlatform = onChangePlatform;
 function onChangePlatform(e) {
@@ -103,7 +104,14 @@ emulDownload.addEventListener('click', function(e) {
 = = = = = = = */
 
 // Launch emulators
-
-
+window.emulInstalled = emulInstalled;
+function emulInstalled(emulatorID) {
+    for(let emulator of emulData) {
+        if(emulator.id === emulatorID) {
+            launchEmulator.loadRoms(emulator);
+            break;
+        }
+    }
+}
 
 
